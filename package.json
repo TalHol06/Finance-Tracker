@@ -1,0 +1,14 @@
+{
+    "name": "finance-tracker",
+    "private": "false",
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "concurrently \"cd server && npm run start \" \"cd client && npm run dev\"",
+        "build": "cd client && npm run build",
+        "server": "cd server && npm start"
+    },
+    "dependencies": {
+        "concurrently": "^9.1.2"
+    }
+}

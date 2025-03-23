@@ -1,0 +1,16 @@
+details > summary::after{
+    display: none !important;
+}
+/* 
+details > summary{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 20px;
+    position: relative;
+} */
+
+ul li{
+    margin: 10px;
+    width: 90%;
+}
