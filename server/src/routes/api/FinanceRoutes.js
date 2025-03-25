@@ -1,4 +1,4 @@
-import { getAllUserFinances, getUserFinances, addFinances } from "../../controllers/FinancesController.js";
+import { getAllUserFinances, getUserFinances, addFinances, cleanUserFinances } from "../../controllers/FinancesController.js";
 import { Router } from "express";
 
 const router = Router();
@@ -6,5 +6,6 @@ const router = Router();
 router.route('/').get(getAllUserFinances);
 router.route('/:userId').post(addFinances);
 router.route('/:financeId').get(getUserFinances);
+router.route('/clean').delete(cleanUserFinances);
 
 export { router as FinanceRoutes };

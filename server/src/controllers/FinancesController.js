@@ -46,3 +46,12 @@ export const addFinances = async (req, res) => {
         res.status(500).json({ message: `Error occurred while trying to add your finances: ${err.message}` });
     }
 }
+
+export const cleanUserFinances = async (req, res) => {
+    try {
+        const finances = await Finances.deleteMany();
+        res.json(finances);
+    } catch (err) {
+        res.status(500).json({ message: `Error occurred while deleting finances: ${err.message}` });
+    }
+}
