@@ -47,6 +47,35 @@ export const addFinances = async (req, res) => {
     }
 }
 
+export const updateFinances = async (req, res) => {
+    const { financeId, userId } = req.params;
+    const { newIncome, newBudget } = req.body;
+
+    if (!financeId || !newIncome) return res.status(400).json({ message: 'All fields are required.' });
+
+    try {
+        const updatedFinance = await Finances.findByIdAndUpdate(
+            financeId,
+            { $set: { netMonthlyIncome: newIncome, budgetType: newBudget } },
+            { new: true}
+        );
+
+        if (!updatedFinance) return res.status(404).json({ message: 'Finance by that id not found.' });
+        
+
+        const updatedUser = await User.findByIdAndUpdate(
+            userId,
+            { $set: { finances: updatedFinance } },
+            { new: true }
+        );
+        if (!updatedUser) return res.status(404).json({ message: 'User by that id not found.' });
+
+        res.json({ newFinances: updatedFinance, newUser: updatedUser });
+    } catch (err) {
+        res.status(500).json({ message: `Error occurred while updating your income: ${err.message}` });
+    }
+}
+
 export const cleanUserFinances = async (req, res) => {
     try {
         const finances = await Finances.deleteMany();

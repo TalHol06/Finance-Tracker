@@ -9,6 +9,9 @@ import Questions from './pages/Questions.jsx';
 import Home from './pages/Home.jsx';
 import ErrorPage from './pages/Error.jsx';
 import Settings from './pages/Settings.jsx';
+import AddExpense from './pages/AddExpense.jsx';
+import HomeBudget from './pages/HomeBudget.jsx';
+import UpdateFinances from './pages/UpdateFinances.jsx';
 
 const router = createBrowserRouter([
   {
@@ -38,6 +41,18 @@ const router = createBrowserRouter([
       {
         path: '/settings',
         element: <Settings />
+      },
+      {
+        path: '/addexpense',
+        element: <AddExpense />
+      },
+      {
+        path: '/home_budget',
+        element: <HomeBudget />
+      },
+      {
+        path: '/update_finances',
+        element: <UpdateFinances />
       }
     ]
   }
