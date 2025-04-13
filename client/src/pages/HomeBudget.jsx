@@ -47,7 +47,14 @@ export default function HomeBudget(){
     fetchUserData();
   }, [userId]);
 
-  console.log(userFinances);
+  async function deleteExpense(expenseId){
+    const answer = prompt('Are you sure you want to delete this expense? Enter yes or no');
+
+    if (answer.toLowerCase() === 'no') return;
+
+    await axios.delete(`/api/expenses/${expenseId}/finance/${userFinances._id}`);
+    location.reload();
+  }
 
   return (
     <>
@@ -96,11 +103,12 @@ export default function HomeBudget(){
                   <h6>{expense.category}</h6>
                   <p>{expense.description}</p>
                   <div style={{ display: 'flex', justifyContent: 'center', margin: '0'}}>
-                    <button className='primary' style={{ margin: '10px', width: '15%'}}>Edit</button>
-                    <button className='secondary' style={{ margin: '10px', width: '15%'}}>Delete</button>
+                    <button className='primary' style={{ margin: '10px', width: '15%'}} onClick={() => navigate('/update_expense')}>Edit</button>
+                    <button className='secondary' style={{ margin: '10px', width: '15%'}} onClick={() => deleteExpense(expense._id)}>Delete</button>
                   </div>
                 </div> 
               ))}
+              <button className='contrast' type='submit' style={{ marginTop: '20px'}} onClick={() => navigate('/add_expense')}>Add New Expense</button>
             </div>
           </main>
         </div>

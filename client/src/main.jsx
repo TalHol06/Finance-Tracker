@@ -12,6 +12,7 @@ import Settings from './pages/Settings.jsx';
 import AddExpense from './pages/AddExpense.jsx';
 import HomeBudget from './pages/HomeBudget.jsx';
 import UpdateFinances from './pages/UpdateFinances.jsx';
+import UpdateExpense from './pages/UpdateExpense.jsx';
 
 const router = createBrowserRouter([
   {
@@ -43,7 +44,7 @@ const router = createBrowserRouter([
         element: <Settings />
       },
       {
-        path: '/addexpense',
+        path: '/add_expense',
         element: <AddExpense />
       },
       {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: '/update_finances',
         element: <UpdateFinances />
+      },
+      {
+        path: '/update_expense',
+        element: <UpdateExpense />
       }
     ]
   }

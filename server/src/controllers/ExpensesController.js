@@ -58,6 +58,7 @@ export const getAllUserExpenses = async (req, res) => {
 export const AddExpense = async (req, res) => {
     const { financeId } = req.params;
     const { name, category, description, cost } = req.body;
+    console.log('route hit');
 
     if (!name || !category || !description || !cost){
         return res.status(400).json({ message: "All fields are required." });
@@ -65,13 +66,13 @@ export const AddExpense = async (req, res) => {
 
     try {
         const newExpense = await Expenses.create({ name, category, description, cost });
-        
+        console.log(newExpense);
         const updatedFinances = await Finances.findByIdAndUpdate(
             financeId,
             { $push: { expenses: newExpense._id } },
             { new: true }
         ).populate('expenses');
-
+        console.log(updatedFinances);
         if (!updatedFinances){
             return res.status(404).json({ message: "Finances by that id not found." });
         }
